@@ -43,43 +43,33 @@ Actively maintained fork of [nbulischeck/tyton](https://github.com/nbulischeck/t
 
 ## Installation
 
-<details open>
-<summary><b>Garuda / Arch Linux</b></summary>
+<details>
+<summary><b>Garuda / Arch Linux</b> — pacman + DKMS</summary>
 
 ```bash
-sudo pacman -S linux-headers gcc make libnotify libsystemd pkgconfig gtk3
-git clone https://github.com/joseguzman1337/tyton.git
-cd tyton && make
-sudo insmod tyton.ko
+sudo pacman -S linux-headers gcc make libnotify libsystemd pkgconfig gtk3 && git clone https://github.com/joseguzman1337/tyton.git && cd tyton && make && sudo insmod tyton.ko
 ```
 
-> **Recommended**: Install via DKMS for automatic rebuilds on kernel upgrades:
-> ```bash
-> yay -S tyton-dkms-git   # or paru, pakku
-> ```
-
-</details>
-
-<details>
-<summary><b>Ubuntu / Debian / Kali</b></summary>
-
 ```bash
-sudo apt install linux-headers-$(uname -r) gcc make libnotify-dev pkg-config libgtk-3-dev libsystemd-dev
-git clone https://github.com/joseguzman1337/tyton.git
-cd tyton && make
-sudo insmod tyton.ko
+yay -S tyton-dkms-git   # recommended: auto-rebuilds on kernel upgrades
 ```
 
 </details>
 
 <details>
-<summary><b>Fedora / CentOS</b></summary>
+<summary><b>Ubuntu / Debian / Kali</b> — apt</summary>
 
 ```bash
-dnf install kernel-devel gcc make libnotify libnotify-devel systemd-devel gtk3-devel gtk3
-git clone https://github.com/joseguzman1337/tyton.git
-cd tyton && make
-sudo insmod tyton.ko
+sudo apt install linux-headers-$(uname -r) gcc make libnotify-dev pkg-config libgtk-3-dev libsystemd-dev && git clone https://github.com/joseguzman1337/tyton.git && cd tyton && make && sudo insmod tyton.ko
+```
+
+</details>
+
+<details>
+<summary><b>Fedora / CentOS</b> — dnf</summary>
+
+```bash
+dnf install kernel-devel gcc make libnotify libnotify-devel systemd-devel gtk3-devel gtk3 && git clone https://github.com/joseguzman1337/tyton.git && cd tyton && make && sudo insmod tyton.ko
 ```
 
 </details>
@@ -103,8 +93,7 @@ sudo insmod tyton.ko
 <summary><b>Module arguments</b> — customize scan interval</summary>
 
 ```bash
-# Set scan interval to X minutes (default: 5)
-sudo insmod tyton.ko timeout=X
+sudo insmod tyton.ko timeout=X   # scan every X minutes (default: 5)
 ```
 
 </details>
