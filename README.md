@@ -103,6 +103,7 @@ sudo insmod tyton.ko timeout=X   # scan every X minutes (default: 5)
 ## Kernel 5.13–6.18+ Patches
 
 > The upstream project died on ~kernel 5.x. We brought it back from the dead.
+> Patched and tested on Garuda Linux, February 2026.
 
 <details>
 <summary><b>Unexported symbols</b> — 3 kernel symbols resolved at runtime via kprobes</summary>
@@ -152,11 +153,11 @@ Several kernel symbols (`module_mutex`, `find_module`, `__module_address`) were 
 
 Tested on **Garuda Linux** (February 2026) — all kernels installed on the same system, built via DKMS:
 
-| Kernel | Version | Status |
-|:---|:---|:---:|
-| `linux-zen` | 6.18.8-zen2-1-zen | **Builds + loads** |
-| `linux` | 6.18.8-arch2-1 | **Builds + loads** |
-| `linux-hardened` | 6.17.13-hardened1-2-hardened | **Builds + loads** |
+| Kernel | Version | Date | Status |
+|:---|:---|:---|:---:|
+| `linux-zen` | 6.18.8-zen2-1-zen | Feb 10, 2026 | **Builds + loads** |
+| `linux` | 6.18.8-arch2-1 | Feb 10, 2026 | **Builds + loads** |
+| `linux-hardened` | 6.17.13-hardened1-2-hardened | Feb 10, 2026 | **Builds + loads** |
 
 ---
 
