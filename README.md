@@ -1,14 +1,13 @@
-# Tyton
+# Tyton (Maintained Fork)
 
-## This Project Is Now Archived
+> **Note**: This is an actively maintained fork of [nbulischeck/tyton](https://github.com/nbulischeck/tyton), which has been archived since November 2021. This fork adds compatibility with modern Linux kernels (5.13 through 6.18+).
 
-[![Build Status](https://travis-ci.com/nbulischeck/tyton.svg?branch=master)](https://travis-ci.com/nbulischeck/tyton)
 [![license](https://img.shields.io/badge/license-GPL-brightgreen.svg)](https://github.com/nbulischeck/tyton/blob/master/LICENSE)
-[![version](https://img.shields.io/badge/linux-4.4.0.31+-blue.svg?style=flat)](https://github.com/nbulischeck/tyton)
+[![version](https://img.shields.io/badge/linux-4.4.0.31--6.18.x-blue.svg?style=flat)](https://github.com/joseguzman1337/tyton)
 
 <img align="left" src="https://i.imgur.com/enDjxat.jpg" style="padding: 25px">
 
-Linux Kernel-Mode Rootkit Hunter for 4.4.0-31+.
+Linux Kernel-Mode Rootkit Hunter for 4.4.0-31 through 6.18.x.
 
 For more information, visit [Tyton's website](https://nbulischeck.github.io/tyton/).
 
@@ -94,3 +93,29 @@ You can install it using the AUR helper of your choice:
 * `yaourt -S tyton-dkms-git`
 * `yay -S tyton-dkms-git`
 * `pakku -S tyton-dkms-git`
+
+## Kernel 5.13–6.18+ Compatibility Patches
+
+The upstream project was archived with support only up to ~kernel 5.x. This fork adds version-guarded patches for the following kernel API changes:
+
+### Unexported Symbols (>= 5.13)
+Several kernel symbols (`module_mutex`, `find_module`, `__module_address`) are no longer exported to modules. This fork resolves them dynamically at runtime using kprobe-based `lookup_name()`:
+- **`include/core.h`** — Dynamic `module_mutex` resolution
+- **`src/util.c`** — Dynamic `__module_address()` lookup
+- **`src/module_list.c`** — Dynamic `find_module()` lookup via `compat_find_module()`
+
+### Struct Changes (>= 6.4)
+- **`src/module_list.c`** — `mod->core_layout` replaced with `mod->mem[MOD_TEXT]` (struct module layout change)
+
+### API Changes (>= 6.1)
+- **`src/proc.c`** — `filldir_fn` return type changed from `int` to `bool`
+- **`src/proc.c`** — `f_op->iterate` replaced with `f_op->iterate_shared` (>= 4.7)
+
+### Removed Interfaces
+- **`src/netfilter_hooks.c`** — `nf_hook_mutex` (static symbol, never exported) replaced with `rcu_dereference_raw()` for safe hook traversal
+- **`src/network_hooks.c`** — `proc_fops`-based hook detection removed (struct member removed in recent kernels); `seq_ops->show` verification retained
+
+### Tested On
+- `linux 6.18.8-arch2-1`
+- `linux-zen 6.18.8-zen2-1-zen`
+- `linux-hardened 6.17.13-hardened1-2-hardened`
