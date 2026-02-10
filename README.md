@@ -6,7 +6,7 @@
 
 [![license](https://img.shields.io/badge/license-GPL-brightgreen.svg)](https://github.com/nbulischeck/tyton/blob/master/LICENSE) ![kernel](https://img.shields.io/badge/kernel-4.4.0--6.18.x-blue.svg) ![arch](https://img.shields.io/badge/arch-x86__64-orange.svg) ![dkms](https://img.shields.io/badge/DKMS-supported-purple.svg)
 
-Actively maintained fork of [nbulischeck/tyton](https://github.com/nbulischeck/tyton) (archived Nov 2021). Patched Feb 2026 for modern Linux kernels 5.13 through 6.18+ with full backward compatibility.
+Actively maintained fork of [nbulischeck/tyton](https://github.com/nbulischeck/tyton) (archived Nov 2021). Reverse-engineered and ported to modern Linux kernels 5.13–6.18+, Feb 2026. Full backward compatibility preserved.
 
 <br clear="left">
 
