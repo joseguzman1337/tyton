@@ -155,8 +155,8 @@ Tested on **Garuda Linux** (February 2026) — all kernels installed on the same
 
 | Kernel | Version | Date | Status |
 |:---|:---|:---|:---:|
-| `linux-zen` | 6.18.8-zen2-1-zen | Feb 10, 2026 | **Builds + loads** |
 | `linux` | 6.18.8-arch2-1 | Feb 10, 2026 | **Builds + loads** |
+| `linux-zen` | 6.18.8-zen2-1-zen | Feb 10, 2026 | **Builds + loads** |
 | `linux-hardened` | 6.17.13-hardened1-2-hardened | Feb 10, 2026 | **Builds + loads** |
 
 ---
