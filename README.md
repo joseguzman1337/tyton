@@ -138,7 +138,7 @@ Several kernel symbols (`module_mutex`, `find_module`, `__module_address`) are n
 </details>
 
 <details>
-<summary><b>Modernized interfaces</b> — netfilter mutex and proc_fops gone</summary>
+<summary><b>Modernized interfaces</b> — netfilter mutex and proc_fops reworked</summary>
 
 | File | Change |
 |:---|:---|
