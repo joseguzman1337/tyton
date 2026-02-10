@@ -13,7 +13,11 @@
 extern int (*ckt)(unsigned long addr); /* Core Kernel Text */
 
 /* https://elixir.bootlin.com/linux/latest/source/fs/nfsd/vfs.c */
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6,1,0)
+static bool filldir_fn(struct dir_context *ctx, const char *name, int namlen, loff_t offset, u64 ino, unsigned int type){
+#else
 static int filldir_fn(struct dir_context *ctx, const char *name, int namlen, loff_t offset, u64 ino, unsigned int type){
+#endif
 	struct readdir_data *buf;
 	struct linux_dirent *d;
 	unsigned int reclen;
@@ -24,7 +28,11 @@ static int filldir_fn(struct dir_context *ctx, const char *name, int namlen, lof
 	reclen = ALIGN(sizeof(struct linux_dirent) + namlen, sizeof(u64));
 	if (buf->used + reclen > PAGE_SIZE) {
 		buf->full = 1;
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6,1,0)
+		return false;
+#else
 		return -EINVAL;
+#endif
 	}
 
 	d->d_ino = ino;
@@ -34,7 +42,11 @@ static int filldir_fn(struct dir_context *ctx, const char *name, int namlen, lof
 	memcpy(d->d_name, name, namlen);
 	buf->used += reclen;
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6,1,0)
+	return true;
+#else
 	return 0;
+#endif
 }
 
 static void analyze_inodes(void){
@@ -106,7 +118,9 @@ void analyze_fops(void){
 		return;
 	}
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,11,0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,7,0)
+	addr = (unsigned long)fp->f_op->iterate_shared;
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3,11,0)
 	addr = (unsigned long)fp->f_op->iterate;
 #else
 	addr = (unsigned long)fp->f_op->readdir;

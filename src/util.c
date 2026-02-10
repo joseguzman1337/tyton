@@ -3,9 +3,19 @@
 #include "core.h"
 #include "util.h"
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,13,0)
+struct module *get_module_from_addr(unsigned long addr){
+	typedef struct module *(*module_address_fn)(unsigned long);
+	module_address_fn fn = (module_address_fn)lookup_name("__module_address");
+	if (!fn)
+		return NULL;
+	return fn(addr);
+}
+#else
 struct module *get_module_from_addr(unsigned long addr){
 	return  __module_address(addr);
 }
+#endif
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5,7,0)
 
