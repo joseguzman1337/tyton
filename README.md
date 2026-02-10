@@ -108,7 +108,7 @@ sudo insmod tyton.ko timeout=X   # scan every X minutes (default: 5)
 <details>
 <summary><b>Unexported symbols</b> — 3 kernel symbols resolved at runtime via kprobes</summary>
 
-Several kernel symbols (`module_mutex`, `find_module`, `__module_address`) were removed from the export table in 5.13+. This fork resolves them **dynamically at runtime** using kprobe-based `lookup_name()`:
+Several kernel symbols (`module_mutex`, `find_module`, `__module_address`) are no longer exported since 5.13+. This fork resolves them **dynamically at runtime** using kprobe-based `lookup_name()`:
 
 | File | Symbol | Resolution |
 |:---|:---|:---|
@@ -138,12 +138,12 @@ Several kernel symbols (`module_mutex`, `find_module`, `__module_address`) were 
 </details>
 
 <details>
-<summary><b>Removed interfaces</b> — netfilter mutex and proc_fops gone</summary>
+<summary><b>Deprecated interfaces</b> — netfilter mutex and proc_fops gone</summary>
 
 | File | Change |
 |:---|:---|
 | `src/netfilter_hooks.c` | `nf_hook_mutex` → `rcu_dereference_raw()` for safe hook traversal |
-| `src/network_hooks.c` | `proc_fops` detection removed (struct member gone); `seq_ops->show` retained |
+| `src/network_hooks.c` | `proc_fops` detection replaced (struct member gone); `seq_ops->show` retained |
 
 </details>
 
