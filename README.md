@@ -161,13 +161,13 @@ Several kernel symbols (`module_mutex`, `find_module`, `__module_address`) were 
 
 ## Verified On
 
-Tested on **Garuda Linux** (February 2026) with DKMS across all installed kernels:
+Tested on **Garuda Linux** (February 2026) — all kernels installed on the same system, built via DKMS:
 
-| Distro | Kernel | Version | Status |
-|:---|:---|:---|:---:|
-| Garuda Linux | `linux-zen` | 6.18.8-zen2-1-zen | **Builds + loads** |
-| Arch Linux | `linux` | 6.18.8-arch2-1 | **Builds + loads** |
-| Arch Linux | `linux-hardened` | 6.17.13-hardened1-2-hardened | **Builds + loads** |
+| Kernel | Version | Status |
+|:---|:---|:---:|
+| `linux-zen` | 6.18.8-zen2-1-zen | **Builds + loads** |
+| `linux` | 6.18.8-arch2-1 | **Builds + loads** |
+| `linux-hardened` | 6.17.13-hardened1-2-hardened | **Builds + loads** |
 
 ---
 
