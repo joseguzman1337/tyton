@@ -1,21 +1,14 @@
-<p align="center">
-  <img src="https://i.imgur.com/enDjxat.jpg" width="200">
-</p>
+<img align="left" src="https://i.imgur.com/enDjxat.jpg" width="140">
 
-<h1 align="center">Tyton</h1>
-<h3 align="center">Linux Kernel-Mode Rootkit Hunter</h3>
+# Tyton
 
-<p align="center">
-  <a href="https://github.com/nbulischeck/tyton/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-GPL-brightgreen.svg" alt="License"></a>
-  <img src="https://img.shields.io/badge/kernel-4.4.0--6.18.x-blue.svg" alt="Kernel Support">
-  <img src="https://img.shields.io/badge/arch-x86__64-orange.svg" alt="Architecture">
-  <img src="https://img.shields.io/badge/DKMS-supported-purple.svg" alt="DKMS">
-</p>
+**Linux Kernel-Mode Rootkit Hunter**
 
-<p align="center">
-  <b>Actively maintained fork</b> of <a href="https://github.com/nbulischeck/tyton">nbulischeck/tyton</a> (archived Nov 2021).<br>
-  Patched for modern Linux kernels 5.13 through 6.18+ with full backward compatibility.
-</p>
+[![license](https://img.shields.io/badge/license-GPL-brightgreen.svg)](https://github.com/nbulischeck/tyton/blob/master/LICENSE) ![kernel](https://img.shields.io/badge/kernel-4.4.0--6.18.x-blue.svg) ![arch](https://img.shields.io/badge/arch-x86__64-orange.svg) ![dkms](https://img.shields.io/badge/DKMS-supported-purple.svg)
+
+Actively maintained fork of [nbulischeck/tyton](https://github.com/nbulischeck/tyton) (archived Nov 2021). Patched for modern Linux kernels 5.13 through 6.18+ with full backward compatibility.
+
+<br clear="left">
 
 ---
 
@@ -168,11 +161,13 @@ Several kernel symbols (`module_mutex`, `find_module`, `__module_address`) were 
 
 ## Verified On
 
-| Kernel | Version | Status |
-|:---|:---|:---:|
-| Garuda Linux (`linux-zen`) | 6.18.8-zen2-1-zen | **Builds + loads** |
-| Arch Linux (`linux`) | 6.18.8-arch2-1 | **Builds + loads** |
-| Hardened (`linux-hardened`) | 6.17.13-hardened1-2-hardened | **Builds + loads** |
+Tested on **Garuda Linux** (February 2026) with DKMS across all installed kernels:
+
+| Distro | Kernel | Version | Status |
+|:---|:---|:---|:---:|
+| Garuda Linux | `linux-zen` | 6.18.8-zen2-1-zen | **Builds + loads** |
+| Arch Linux | `linux` | 6.18.8-arch2-1 | **Builds + loads** |
+| Arch Linux | `linux-hardened` | 6.17.13-hardened1-2-hardened | **Builds + loads** |
 
 ---
 
