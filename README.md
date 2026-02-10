@@ -163,5 +163,5 @@ Tested on **Garuda Linux** (February 2026) — all kernels installed on the same
 
 <p align="center">
   Original project by <a href="https://github.com/nbulischeck">Nick Bulischeck</a><br>
-  Kernel 5.13–6.18+ patches by <a href="https://github.com/joseguzman1337">@joseguzman1337</a>
+  Reverse-engineered and ported to kernel 5.13–6.18+ by <a href="https://github.com/joseguzman1337">@joseguzman1337</a> & <a href="https://claude.ai">Claude</a>
 </p>
