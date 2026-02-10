@@ -102,7 +102,7 @@ sudo insmod tyton.ko timeout=X   # scan every X minutes (default: 5)
 
 ## Kernel 5.13–6.18+ Patches
 
-> The upstream project stopped at ~kernel 5.x. We picked it up and made it run again.
+> The upstream project was archived at ~kernel 5.x. We picked it up and made it run again.
 > Patched and tested on Garuda Linux, February 2026.
 
 <details>
