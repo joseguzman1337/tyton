@@ -38,7 +38,6 @@ void analyze_networks(void){
 	unsigned long op_addr[4];
 	const struct module *mod;
 	const struct seq_operations *seq_ops;
-	const struct file_operations *seq_fops;
 	const char *mod_name, *op_string[4] = {
 		"llseek", "read", "release", "show"
 	};
@@ -49,15 +48,16 @@ void analyze_networks(void){
 			continue;
 
 		seq_ops = net[i].entry->seq_ops;
-		seq_fops = net[i].entry->proc_fops;
-		
-		op_addr[0] = *(unsigned long *)seq_fops->llseek;
-		op_addr[1] = *(unsigned long *)seq_fops->read;
-		op_addr[2] = *(unsigned long *)seq_fops->release;
-		op_addr[3] = *(unsigned long *)seq_ops->show;
+		if (!seq_ops)
+			continue;
+
+		op_addr[0] = 0;
+		op_addr[1] = 0;
+		op_addr[2] = 0;
+		op_addr[3] = (unsigned long)seq_ops->show;
 
 		for (j = 0; j < 4; j++){
-			if (!ckt(op_addr[j])){
+			if (op_addr[j] && !ckt(op_addr[j])){
 				mutex_lock(&module_mutex);
 				mod = get_module_from_addr(op_addr[j]);
 				if (mod){

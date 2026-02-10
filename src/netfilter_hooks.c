@@ -7,7 +7,7 @@
 #include "module_list.h"
 
 #define nf_entry_dereference(e) \
-	rcu_dereference_protected(e, lockdep_is_held(&nf_hook_mutex))
+	rcu_dereference_raw(e)
 
 const char *mod_wl[] = {
 	"iptable_nat",
